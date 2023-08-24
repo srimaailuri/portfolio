@@ -1,0 +1,111 @@
+#portfolio {
+    color: white;
+    font-weight: bold;
+    font-family: "Roboto";
+}
+
+#navItem1 {
+    font-weight: 600;
+    color: white;
+    font-family: "Roboto";
+}
+
+#navItem2 {
+    font-weight: 600;
+    color: white;
+    font-family: "Roboto";
+}
+
+#navItem3 {
+    font-weight: 600;
+    color: white;
+    font-family: "Roboto";
+}
+
+#navItem4 {
+    font-weight: 600;
+    color: white;
+    font-family: "Roboto";
+}
+
+#navItem5 {
+    font-weight: 600;
+    color: white;
+    font-family: "Roboto";
+}
+
+#navItem6 {
+    font-weight: 600;
+    color: white;
+    font-family: "Roboto";
+}
+
+.heading_section {
+    color: #cced00;
+    font-family: 'Georgia, serif';
+    font-weight: 800;
+}
+
+
+.image_myself {
+    width: 100%;
+    height: 100%;
+}
+
+.name {
+    font-style: italic;
+    font-family: Georgia;
+    color: #cced00;
+}
+
+.heading {
+    color: #9aa5b1;
+    font-size: 20px;
+    font-family: "Roboto";
+    font-weight: bold;
+}
+
+.webpage_background_color {
+    background-color: #1f2933;
+    border-style: none;
+    border-width: 0;
+}
+
+.lang-card {
+    height: 30vh;
+    width: 30vh;
+    margin: 10px;
+    border-radius: 12px;
+}
+
+.member-card {
+    background-color: #323f4b;
+    padding: 20px;
+}
+
+.project-image {
+    width: 350px;
+    height: 350px;
+}
+
+.member-desc {
+    color: #9aa5b1;
+    text-align: center;
+}
+
+
+.image_footer {
+    border-radius: 40px;
+    width: 80px;
+    height: 80px;
+}
+
+
+
+
+.assignment {
+    color: #9aa5b1;
+    font-size: 15px;
+    font-family: "Roboto";
+    font-weight: 500;
+}
