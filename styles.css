@@ -178,45 +178,42 @@ dl{
     line-height: 1.5;
 }
 
+.skill-head{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.progress-container {
+    margin: 10px 0;
+    width: 100%;
+    background-color: #e6e6e6;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .progress-bar {
+    height: 7px;
+    width: 0;
+    background-color: #4caf50;
+    text-align: right;
+    padding-right: 10px;
+    line-height: 5px;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+    transition: width 1s ease-in-out;
+  }
+
+
+/* circular progress */
 .circular_skill{
     width: 160px;
     height:160px;
     position: relative;
     justify-content: center;
     align-items:center;
-}
-
-
-.progress-bar {
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 100%; /* Full width */
-    height: 7px; /* Fixed height */
-    position: relative;
-    margin-bottom: 20px; 
-}
-
-
-.progress {
-    height: 100%;
-    background-color: #4caf50;
-    width: 0;
-    border-radius: 10px;
-    transition: width 2s ease-in-out;
-    position: relative;
-}
-
-
-.percentage {
-    position: absolute;
-    top: -25px; /* Position above the progress bar */
-    right: 0;
-    transform: translateX(100%);
-    color: #333;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 .circular-progress {
@@ -320,6 +317,10 @@ dl{
 .card-img-top {
     height: 200px;
     object-fit: cover;
+}
+
+.modal-content{
+    color:#333;
 }
 
 /* Contact us*/

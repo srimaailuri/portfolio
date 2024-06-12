@@ -33,29 +33,19 @@ document.addEventListener("DOMContentLoaded", function() { // On DOM Load initia
     setTimeout(type, newTextDelay);
 
     /* progress bar*/
+    const progressBars = document.querySelectorAll('.progress-bar');
 
-    const progressBars = document.querySelectorAll('.progress');
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const bar = entry.target;
-                const percentage = bar.getAttribute('data-percentage');
-                bar.style.width = `${percentage}%`;
-
-                setTimeout(() => {
-                    const percentageSpan = bar.querySelector('.percentage');
-                    percentageSpan.style.left = `${percentage}%`;
-                    percentageSpan.style.opacity = 1; // Show percentage text
-                }, 2000); // Match the transition duration in CSS
-            }
-        });
-    }, {
-        threshold: 0.5 // Adjust as needed
-    });
-
-    progressBars.forEach(bar => {
-        observer.observe(bar);
+    progressBars.forEach(function(bar) {
+      const percentage = bar.getAttribute('data-percentage');
+      let count = 0;
+      const interval = setInterval(function() {
+        if (count <= percentage) {
+          bar.style.width = count + '%';
+          count++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 15); // Adjust the speed of the animation by changing the interval time
     });
 
 
