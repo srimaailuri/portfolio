@@ -1,39 +1,38 @@
+// script.js
 const textElement = document.getElementById('animated-text');
 const texts = ["developer", "creative person"];
 let index = 0;
 let charIndex = 0;
+let currentText = '';
 let isDeleting = false;
-const typingSpeed = 100; // Speed of typing in milliseconds
-const delayBetweenTexts = 2000; // Delay between texts in milliseconds
+const typingSpeed = 100; // Speed of typing
+const erasingSpeed = 50;  // Speed of erasing
+const newTextDelay = 2000; // Delay between current and next text
 
 function type() {
-    const currentText = texts[index];
-    if (isDeleting) {
-        textElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-        if (charIndex === 0) {
-            isDeleting = false;
-            index = (index + 1) % texts.length;
-            setTimeout(type, typingSpeed);
-        } else {
-            setTimeout(type, typingSpeed / 2);
-        }
-    } else {
-        textElement.textContent = currentText.substring(0, charIndex + 1);
+    if (!isDeleting && charIndex < texts[index].length) {
+        currentText += texts[index].charAt(charIndex);
         charIndex++;
-        if (charIndex === currentText.length) {
-            isDeleting = true;
-            setTimeout(type, delayBetweenTexts);
-        } else {
-            setTimeout(type, typingSpeed);
+        textElement.textContent = currentText;
+        setTimeout(type, typingSpeed);
+    } else if (isDeleting && charIndex > 0) {
+        currentText = texts[index].substring(0, charIndex - 1);
+        charIndex--;
+        textElement.textContent = currentText;
+        setTimeout(type, erasingSpeed);
+    } else {
+        isDeleting = !isDeleting;
+        if (!isDeleting) {
+            index = (index + 1) % texts.length;
         }
+        setTimeout(type, newTextDelay);
     }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    if (texts.length > 0) {
-        type();
-    }
+document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
+    setTimeout(type, newTextDelay);
+
+    /* progress bar*/
 
     const progressBars = document.querySelectorAll('.progress');
 
@@ -44,12 +43,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 const percentage = bar.getAttribute('data-percentage');
                 bar.style.width = `${percentage}%`;
 
-                // Show the percentage after the animation completes
                 setTimeout(() => {
                     const percentageSpan = bar.querySelector('.percentage');
-                    percentageSpan.style.opacity = 1;
-                    // Adjust the position of the percentage span to be outside the progress bar
-                    percentageSpan.style.transform = `translateX(0)`;
+                    percentageSpan.style.left = `${percentage}%`;
+                    percentageSpan.style.opacity = 1; // Show percentage text
                 }, 2000); // Match the transition duration in CSS
             }
         });
@@ -61,43 +58,52 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(bar);
     });
 
-    const circularprogressBars = document.querySelectorAll('.circular-progress');
 
-    circularprogressBars.forEach(bar => {
-        const percentage = bar.getAttribute('data-percentage');
-        const circle = bar.querySelector('.progress-ring__circle');
-        const radius = circle.r.baseVal.value;
-        const circumference = 2 * Math.PI * radius;
 
-        circle.style.strokeDasharray = `${circumference} ${circumference}`;
-        circle.style.strokeDashoffset = circumference;
+    /* circular bar*/
 
-        const offset = circumference - (percentage / 100) * circumference;
-        
-        // Start animation after a short delay to ensure initial render
-        setTimeout(() => {
-            circle.style.strokeDashoffset = offset;
-        }, 100);
+    const circularProgressBars = document.querySelectorAll('.circular-progress');
+
+    circularProgressBars.forEach(function(bar) {
+      const percentage = bar.getAttribute('data-percentage');
+      const progressCircle = bar.querySelector('.progress-circle');
+      const percentageElement = bar.querySelector('.percentage');
+
+      let count = 0;
+      const interval = setInterval(function() {
+        if (count <= percentage) {
+          const offset = 440 - (440 * count) / 100;
+          progressCircle.style.strokeDashoffset = offset;
+          percentageElement.textContent = `${count}%`;
+          count++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 15); // Adjust the speed of the animation by changing the interval time
     });
 
-    const educationDetails = document.querySelectorAll('.education-detail');
+    /* education */
 
-    const educationObserver = new IntersectionObserver((entries, observer) => {
+    const sections = document.querySelectorAll('.section');
+
+    const observerOptions = {
+        threshold: 0.1 // Adjust the threshold as needed
+    };
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
                 observer.unobserve(entry.target); // Stop observing once it's visible
             }
         });
-    }, { threshold: 0.1 });
+    }, observerOptions);
 
-    educationDetails.forEach((detail, index) => {
-        educationObserver.observe(detail);
+    sections.forEach(section => {
+        sectionObserver.observe(section);
     });
 
-
-    // projects
-
+    /* projects */
 
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
@@ -134,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    const Projectobserver = new IntersectionObserver(entries => {
+    const educationobserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('in-view');
@@ -143,45 +149,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     projectCards.forEach(card => {
-        Projectobserver.observe(card);
-    });    
-
-})
-
-
-/* circular progress bar */
-
-const numbers = document.querySelectorAll(".number");
-
-// Define the target percentages for each progress bar
-const targetPercentages = [50, 75, 90,80]; // Adjust the percentages for each progress bar as needed
-
-// Calculate the total durations for each progress bar to complete
-const totalDurations = [1500, 2000, 2500,2100]; // Adjust the durations for each progress bar as needed
-
-// Calculate the total frames for each duration
-const framesPerSecond = 60;
-const totalFrames = totalDurations.map(duration => duration / (1000 / framesPerSecond));
-
-let frames = new Array(numbers.length).fill(0); // Initialize frames for each progress bar
-
-const interval = setInterval(() => {
-    let allCompleted = true;
-
-    frames.forEach((frame, index) => {
-        if (frame < totalFrames[index]) {
-            allCompleted = false;
-            frame++;
-
-            // Calculate percentage based on current frame, total frames, and target percentage
-            const percentage = Math.min((frame / totalFrames[index]) * targetPercentages[index], 100); // Ensure percentage doesn't exceed 100
-            numbers[index].innerHTML = percentage.toFixed(0) + "%";
-
-            frames[index] = frame;
-        }
+        educationobserver.observe(card);
     });
 
-    if (allCompleted) {
-        clearInterval(interval);
-    }
-}, 1000 / framesPerSecond);
+    
+});
+
+
+
+
+
