@@ -24,7 +24,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">My Portfolio</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,20 +59,20 @@
     <!-- Home -->
     <header id="home">
         <div class="Homecontainer">
-            <div class="content">
-                <div class="left">
-                    <h1 class="name">Srima <span class="initial">Ailuri</span></h1>
-                    <p class="job">Hardworking student</p>
-                    <h1 id="animated-text" class="animated_class">developer</h1>
-                </div>
-                <div class="right">
-                    <div class="image-container">
-                        <img src="my_portfolio_photo.jpeg" alt="Your Photo" id="profile-photo">
-                    </div>
-                </div>
+          <div class="content">
+            <div class="left">
+              <h1 class="name">Srima <span class="initial">Ailuri</span></h1>
+              <p class="job">Hardworking student</p>
+              <div id="animated-text" class="typing-container animated_class"></div>
             </div>
+            <div class="right">
+              <div class="image-container">
+                <img src="my_portfolio_photo.jpeg" alt="Your Photo" id="profile-photo">
+              </div>
+            </div>
+          </div>
         </div>
-    </header>
+      </header>
 
     <!--About-->
 
@@ -105,11 +105,11 @@
                     <dd>https://github.com/srimaailuri</dd>                   
                 </dl>
                 <div class="resume_container">
-                    <button class="btn_resume" onclick="downloadPDF()">Download Resume</button>
+                    <a class="btn_resume" href="web_resume.pdf" download="My_Resume.pdf">Download Resume</a>
                 </div>
             </div>
         </div>
-        
+   
     </section>
 
     <!--skills-->
@@ -363,7 +363,7 @@
           <a href="https://www.instagram.com/srimamadhusudhan/" target="_blank" class="follow-us-icon-container">
             <i class="bi bi-instagram"></i>
           </a>
-          <a href="https://twitter.com/YOUR_TWITTER_PROFILE" target="_blank" class="follow-us-icon-container">
+          <a href="https://x.com/srimaailuri" target="_blank" class="follow-us-icon-container">
             <i class="bi bi-twitter"></i>
           </a>
         </div>
@@ -396,4 +396,3 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-

@@ -120,6 +120,24 @@ body {
     }
 }
 
+.animated_class {
+      display: inline;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: #4caf50; }
+    }
+
+    .typing-animation {
+      animation: typing 3s steps(30, end) infinite, blink 0.75s step-end infinite;
+    }
+
 /*about*/
 
 .title_container{
@@ -162,6 +180,7 @@ dl{
     width:180px;
     padding:5px;
     background-color: #C3F550;
+    text-decoration:none;
 }
 
 /* skills*/

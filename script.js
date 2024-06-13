@@ -1,4 +1,4 @@
-// script.js
+
 const textElement = document.getElementById('animated-text');
 const texts = ["developer", "creative person"];
 let index = 0;
@@ -30,16 +30,36 @@ function type() {
 }
 
 
-//downloading resume
 
 
+document.addEventListener("DOMContentLoaded", function() { 
+    const texts = ["developer", "creative person"];
+    let index = 0;
+    let charIndex = 0;
+    const typingText = document.getElementById('animated-text');
 
+    function type() {
+      if (charIndex < texts[index].length) {
+        typingText.textContent += texts[index].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, 150);
+      } else {
+        setTimeout(erase, 2000);
+      }
+    }
 
+    function erase() {
+      if (charIndex > 0) {
+        typingText.textContent = texts[index].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, 100);
+      } else {
+        index = (index + 1) % texts.length;
+        setTimeout(type, 500);
+      }
+    }
 
-
-document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
-    setTimeout(type, newTextDelay);
-
+    type();
     /* progress bar*/
     const progressBars = document.querySelectorAll('.progress-bar');
 
