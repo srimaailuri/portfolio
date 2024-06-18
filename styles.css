@@ -99,7 +99,7 @@ body {
     border-radius: 50%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
 
     #animated-text {
         font-size: 1.5em;
@@ -107,7 +107,7 @@ body {
     }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
 
     .image-container{
         width:60%;
@@ -162,6 +162,12 @@ body {
     justify-content: center;
 }
 
+@media (max-width:768px){
+    .designation_box{
+        font-size:25px;
+    }
+}
+
 .wrapper{
     display:flex;
 }
@@ -170,6 +176,7 @@ dl{
     line-height: 2.0;
     column-count: 2;
 }
+
 
 .resume_container{
     text-align:center;
@@ -227,18 +234,14 @@ dl{
 
 
 /* circular progress */
-.circular_skill{
-    width: 160px;
-    height:160px;
-    position: relative;
-    justify-content: center;
-    align-items:center;
-}
+
 
 .circular-progress {
     position: relative;
     width: 160px;
     height: 160px;
+    justify-content: center;
+    align-items: center;
   }
 
   .circular-progress svg {
@@ -278,7 +281,6 @@ dl{
     opacity: 0; /* Initially hidden */
     transform: translateY(20px); /* Initially slide up */
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    margin: 50px 0;
     padding: 20px;
     background-color: #f0f0f0;
     border-radius: 8px;
@@ -317,6 +319,16 @@ dl{
 .education-detail.visible {
     opacity: 1; /* Visible */
     transform: translateX(0); /* Slide to original position */
+}
+
+@media (max-width:768px){
+    .education-container{
+        font-size:27px;
+    }
+
+    .education-detail{
+        width:100%;
+    }
 }
 
 /* Projects*/
